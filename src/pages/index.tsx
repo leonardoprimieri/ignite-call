@@ -1,5 +1,5 @@
-import { Heading } from "@ignite-ui/react";
+import { Heading } from '@ignite-ui/react'
 
 export default function Home() {
-  return <Heading>Hello cu</Heading>;
+  return <Heading>Hello cu</Heading>
 }
