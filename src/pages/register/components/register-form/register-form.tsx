@@ -6,9 +6,9 @@ import { ArrowRight } from 'phosphor-react'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import TextInput from '../../../../../components/text-input/text-input'
-import { api } from '../../../../../lib/axios'
-import { Form } from './first-step-styles'
+import TextInput from '../../../../components/text-input/text-input'
+import { api } from '../../../../lib/axios'
+import { Form } from './register-form-styles'
 
 const registerFormSchema = z.object({
   username: z
@@ -25,12 +25,8 @@ const registerFormSchema = z.object({
 
 type RegisterFormData = z.infer<typeof registerFormSchema>
 
-type Props = {
-  setFormStep(step: number): void
-}
-
-export default function FirstStep({ setFormStep }: Props) {
-  const params = useRouter().query
+export default function RegisterForm() {
+  const router = useRouter()
 
   const {
     register,
@@ -42,9 +38,9 @@ export default function FirstStep({ setFormStep }: Props) {
   })
 
   useEffect(() => {
-    if (!params?.username) return
-    setValue('username', String(params.username))
-  }, [params.username, setValue])
+    if (!router?.query?.username) return
+    setValue('username', String(router?.query?.username))
+  }, [router?.query?.username, setValue])
 
   const handleRegister = async (data: RegisterFormData) => {
     try {
@@ -52,7 +48,7 @@ export default function FirstStep({ setFormStep }: Props) {
         name: data.name,
         username: data.username,
       })
-      setFormStep(2)
+      await router.push('/register/connect-calendar')
     } catch (err) {
       if (err instanceof AxiosError) {
         alert(err.response?.data?.error)
