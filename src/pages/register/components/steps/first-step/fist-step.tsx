@@ -6,9 +6,9 @@ import { ArrowRight } from 'phosphor-react'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import TextInput from '../../../../components/text-input/text-input'
-import { api } from '../../../../lib/axios'
-import { Form } from './claim-user-data-form-styles'
+import TextInput from '../../../../../components/text-input/text-input'
+import { api } from '../../../../../lib/axios'
+import { Form } from './first-step-styles'
 
 const registerFormSchema = z.object({
   username: z
@@ -25,7 +25,11 @@ const registerFormSchema = z.object({
 
 type RegisterFormData = z.infer<typeof registerFormSchema>
 
-export default function ClaimUserDataForm() {
+type Props = {
+  setFormStep(step: number): void
+}
+
+export default function FirstStep({ setFormStep }: Props) {
   const params = useRouter().query
 
   const {
@@ -48,6 +52,7 @@ export default function ClaimUserDataForm() {
         name: data.name,
         username: data.username,
       })
+      setFormStep(2)
     } catch (err) {
       if (err instanceof AxiosError) {
         alert(err.response?.data?.error)

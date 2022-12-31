@@ -1,8 +1,17 @@
 import { Heading, MultiStep, Text } from '@ignite-ui/react'
-import ClaimUserDataForm from './components/claim-user-data-form/claim-user-data-form'
+import { ReactNode, useState } from 'react'
+import FirstStep from './components/steps/first-step/fist-step'
+import SecondStep from './components/steps/second-step/second-step'
 import { Container, Header } from './register-styles'
 
 export default function Register() {
+  const [formStep, setFormStep] = useState(1)
+
+  const formStepContents: Record<number, ReactNode> = {
+    1: <FirstStep setFormStep={setFormStep} />,
+    2: <SecondStep setFormStep={setFormStep} />,
+  }
+
   return (
     <Container>
       <Header>
@@ -12,8 +21,8 @@ export default function Register() {
           editar essas informações depois.
         </Text>
 
-        <MultiStep size={4} currentStep={1} />
-        <ClaimUserDataForm />
+        <MultiStep size={4} currentStep={formStep} />
+        {formStepContents[formStep]}
       </Header>
     </Container>
   )
