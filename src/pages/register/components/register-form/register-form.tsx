@@ -1,4 +1,5 @@
 import { TextInput } from '@/components'
+import { api } from '@/lib/axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '@ignite-ui/react'
 import { AxiosError } from 'axios'
@@ -6,24 +7,8 @@ import { useRouter } from 'next/router'
 import { ArrowRight } from 'phosphor-react'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { api } from '../../../../lib/axios'
+import { RegisterFormData, registerFormSchema } from './register-form-schema'
 import { Form } from './register-form-styles'
-
-const registerFormSchema = z.object({
-  username: z
-    .string()
-    .min(3, { message: 'O usuário precisa ter pelo menos 3 letras.' })
-    .regex(/^([a-z\\-]+)$/i, {
-      message: 'O usuário pode ter apenas letras e hifens.',
-    })
-    .transform((value) => value.toLowerCase()),
-  name: z.string().min(3, {
-    message: 'O nome precisa ter pelo menos 3 letras.',
-  }),
-})
-
-type RegisterFormData = z.infer<typeof registerFormSchema>
 
 export default function RegisterForm() {
   const router = useRouter()
