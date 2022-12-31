@@ -1,5 +1,6 @@
 import { Text, TextInput as IgniteTextInput } from '@ignite-ui/react'
 import { ComponentProps, forwardRef } from 'react'
+import { Container } from './text-input-styles'
 
 type Props = {
   label?: string
@@ -10,9 +11,9 @@ export default forwardRef(function TextInput(
   ref,
 ) {
   return (
-    <label>
+    <Container>
       {Boolean(label) && <Text size="sm">{label}</Text>}
       <IgniteTextInput prefix={prefix} ref={ref as any} {...props} />
-    </label>
+    </Container>
   )
 })

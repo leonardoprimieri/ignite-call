@@ -1,4 +1,5 @@
-import { Heading, MultiStep, Text } from '@ignite-ui/react'
+import { Button, Heading, MultiStep, Text } from '@ignite-ui/react'
+import { ArrowRight } from 'phosphor-react'
 import TextInput from '../../components/text-input/text-input'
 import { Container, Form, Header } from './register-styles'
 
@@ -15,6 +16,11 @@ export default function Register() {
         <MultiStep size={4} currentStep={1} />
         <Form as="form">
           <TextInput label="Nome de usuário" placeholder="seu-usuario" />
+          <TextInput label="Nome completo" placeholder="seu-usuario" />
+          <Button type="submit">
+            Próximo passo
+            <ArrowRight />
+          </Button>
         </Form>
       </Header>
     </Container>
