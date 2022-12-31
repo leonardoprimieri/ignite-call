@@ -16,3 +16,8 @@ export const GoogleCalendarContainer = styled(Box, {
     fontWeight: '$medium',
   },
 })
+
+export const AuthErrorMessage = styled(Text, {
+  color: '#f75a68',
+  margin: '$4 $1',
+})
