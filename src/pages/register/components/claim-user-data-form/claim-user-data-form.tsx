@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import TextInput from '../../../../components/text-input/text-input'
+import { api } from '../../../../lib/axios'
 import { Form } from './claim-user-data-form-styles'
 
 const registerFormSchema = z.object({
@@ -41,7 +42,14 @@ export default function ClaimUserDataForm() {
   }, [params.username, setValue])
 
   const handleRegister = async (data: RegisterFormData) => {
-    console.log(data)
+    try {
+      await api.post('/users', {
+        name: data.name,
+        username: data.username,
+      })
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
