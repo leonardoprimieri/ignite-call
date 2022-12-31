@@ -1,3 +1,4 @@
+import { TextInput } from '@/components'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '@ignite-ui/react'
 import { AxiosError } from 'axios'
@@ -6,7 +7,6 @@ import { ArrowRight } from 'phosphor-react'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import TextInput from '../../../../components/text-input/text-input'
 import { api } from '../../../../lib/axios'
 import { Form } from './register-form-styles'
 

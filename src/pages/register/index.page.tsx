@@ -1,5 +1,4 @@
-import { StepFormContainer } from './components'
-import RegisterForm from './components/register-form/register-form'
+import { RegisterForm, StepFormContainer } from './components'
 
 export default function Register() {
   return (

@@ -1,7 +1,7 @@
 import { Button, Text } from '@ignite-ui/react'
 import { signIn } from 'next-auth/react'
 import { ArrowRight } from 'phosphor-react'
-import { StepFormContainer } from '../components'
+import { StepFormContainer } from '@/pages/register/components'
 import { Form, GoogleCalendarContainer } from './connect-calendar-styles'
 
 export default function ConnectCalendar() {
