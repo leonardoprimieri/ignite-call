@@ -5,5 +5,6 @@ export const useAuth = () => {
 
   return {
     isAuthenticated: session.status === 'authenticated',
+    user: session.data?.user,
   }
 }
