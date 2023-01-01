@@ -12,8 +12,7 @@ import { useAuth } from '@/hooks'
 
 export default function ConnectCalendar() {
   const router = useRouter()
-  const { isAuthenticated, user } = useAuth()
-  console.log('🚀 ~ file: index.page.tsx:16 ~ ConnectCalendar ~ user', user)
+  const { isAuthenticated } = useAuth()
 
   const hasAuthError = Boolean(router.query.error)
 
