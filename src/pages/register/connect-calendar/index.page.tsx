@@ -1,5 +1,5 @@
 import { Button, Text } from '@ignite-ui/react'
-import { signIn, useSession } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 import { ArrowRight, Check } from 'phosphor-react'
 import { StepFormContainer } from '@/pages/register/components'
 import {
@@ -8,13 +8,13 @@ import {
   GoogleCalendarContainer,
 } from './connect-calendar-styles'
 import { useRouter } from 'next/router'
+import { useAuth } from '@/hooks'
 
 export default function ConnectCalendar() {
   const router = useRouter()
-  const session = useSession()
+  const { isAuthenticated } = useAuth()
 
   const hasAuthError = Boolean(router.query.error)
-  const isAuthenticated = session.status === 'authenticated'
 
   const handleSignIn = async () => await signIn('google')
 
