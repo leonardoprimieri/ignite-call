@@ -6,7 +6,8 @@ import { ArrowRight } from 'phosphor-react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { StepFormContainer } from '../components'
 import {
-  TimeIntervalsFormData,
+  TimeIntervalsFormInput,
+  TimeIntervalsFormOutput,
   timeIntervalsSchema,
 } from './time-intervals-schema'
 import {
@@ -25,7 +26,7 @@ export default function TimeIntervals() {
     control,
     watch,
     formState: { isSubmitting, errors },
-  } = useForm({
+  } = useForm<TimeIntervalsFormInput>({
     defaultValues: {
       intervals: [
         { weekDay: 0, enabled: false, startTime: '08:00', endTime: '18:00' },
@@ -47,11 +48,8 @@ export default function TimeIntervals() {
 
   const intervals = watch('intervals')
 
-  const handleSetTimeIntervals = async (data: TimeIntervalsFormData) => {
-    console.log(
-      '🚀 ~ file: index.page.tsx:44 ~ handleSetTimeIntervals ~ data',
-      data,
-    )
+  const handleSetTimeIntervals = async (data: any) => {
+    const formData = data as TimeIntervalsFormOutput
   }
 
   return (
