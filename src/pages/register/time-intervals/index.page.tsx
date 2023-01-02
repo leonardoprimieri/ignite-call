@@ -1,4 +1,5 @@
 import TextInput from '@/components/text-input/text-input'
+import { api } from '@/lib/axios'
 import { getWeekDays } from '@/utils/get-week-days'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Checkbox, Text } from '@ignite-ui/react'
@@ -49,7 +50,9 @@ export default function TimeIntervals() {
   const intervals = watch('intervals')
 
   const handleSetTimeIntervals = async (data: any) => {
-    const formData = data as TimeIntervalsFormOutput
+    const { intervals } = data as TimeIntervalsFormOutput
+
+    await api.post('/users/time-intervals', intervals)
   }
 
   return (
