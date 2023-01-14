@@ -34,7 +34,9 @@ export default async function handle(
 
   const { intervals } = timeIntervalsBodySchema.parse(req.body)
 
-  if (!intervals) return null
+  if (!intervals) {
+    throw new Error('Invalid body')
+  }
 
   await Promise.all(
     intervals.map((interval) => {
