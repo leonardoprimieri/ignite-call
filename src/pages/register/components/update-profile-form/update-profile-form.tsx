@@ -1,4 +1,5 @@
 import TextInput from '@/components/text-input/text-input'
+import { api } from '@/lib/axios'
 import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
 import { Avatar, Button, Text } from '@ignite-ui/react'
 import { GetServerSideProps } from 'next'
@@ -18,15 +19,18 @@ export default function UpdateProfileForm() {
     handleSubmit,
   } = useForm()
 
-  const handleUpdateProfile = (data: any) => {
+  const handleUpdateProfile = async (data: any) => {
     const formData = data as UpdateProfileFormOutput
-    console.log(formData)
+
+    await api.put('/users/profile/update', {
+      bio: formData.bio,
+    })
   }
 
   return (
     <ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}>
       <Text size="sm">Foto de perfil</Text>
-      <Avatar src={data?.user?.avatar_url} />
+      <Avatar src={data?.user?.avatar_url} alt={data?.user?.name} />
       <TextInput textArea {...register('bio')} label="Sobre você" />
       <FormAnnotation size="sm">
         Fale um pouco sobre você. Isto será exibido em sua página pessoal.
